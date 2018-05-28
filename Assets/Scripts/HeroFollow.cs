@@ -5,7 +5,7 @@ using UnityEngine;
 public class HeroFollow : MonoBehaviour
 {
     public HeroRabbit rabit;
-    
+
     void Update()
     {
         Transform rabit_transform = rabit.transform;
