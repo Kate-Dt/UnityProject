@@ -19,6 +19,22 @@ public class LevelController : MonoBehaviour {
 
     public void onRabbitDeath(HeroRabbit rabbit)
     {
+
         rabbit.transform.position = this.startingPosition;
+    }
+
+    public void addCoins(int number)
+    {
+
+    }
+
+    public void addApples(int number)
+    {
+
+    }
+
+    public void addCrystals(int number)
+    {
+
     }
 }
