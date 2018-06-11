@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Crystals : Collectable
+public class Crystal : Collectable
 {
     protected override void OnRabitHit(HeroRabbit rabit)
     {
