@@ -9,10 +9,10 @@ public class Mushroom : Collectable
 
     protected override void OnRabitHit(HeroRabbit rabit)
     {
-        if (!rabit.isBig)
+        if (!HeroRabbit.isBig)
         {
             rabit.transform.localScale += rabbitScaleIncrement;
-            rabit.isBig = true;
+            HeroRabbit.isBig = true;
         }
         this.CollectedHide();
     }

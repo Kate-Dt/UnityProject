@@ -9,10 +9,10 @@ public class Bomb : Collectable
 
     protected override void OnRabitHit(HeroRabbit rabit)
     {
-        if (rabit.isBig)
+        if (HeroRabbit.isBig)
         {
             rabit.transform.localScale -= rabbitScaleDecrement;
-            rabit.isBig = false;
+            HeroRabbit.isBig = false;
         } else
         {
            rabit.die();

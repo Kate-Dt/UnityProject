@@ -5,15 +5,23 @@ using UnityEngine;
 public class HeroRabbit : MonoBehaviour {
 
     public float speed = 1;
-    public bool isBig = false;
     Rigidbody2D myBody = null;
-    Animator animator;
+    public Animator animator;
     bool isGrounded = false;
     bool JumpActive = false;
     float JumpTime = 0f;
     public float MaxJumpTime = 2f;
     public float JumpSpeed = 2f;
     Transform heroParent = null;
+
+    public static bool isBig = false;
+    public static bool isDead = false;
+    public static HeroRabbit lastRabbit = null;
+
+    void Awake()
+    {
+        lastRabbit = this;
+    }
     
 	// Use this for initialization
 	void Start () {
@@ -46,6 +54,11 @@ public class HeroRabbit : MonoBehaviour {
         int layer_id = 1 << LayerMask.NameToLayer("Ground");
 
         RaycastHit2D hit = Physics2D.Linecast(from, to, layer_id);
+
+        if (isDead)
+        {
+            die();
+        }
 
         if (Mathf.Abs (value) > 0)
         {
@@ -102,7 +115,7 @@ public class HeroRabbit : MonoBehaviour {
                 if (this.JumpTime < this.MaxJumpTime)
                 {
                     Vector2 vel = myBody.velocity;
-                    vel.y = JumpSpeed * (1.0f - JumpTime / MaxJumpTime);
+                    vel.y = JumpSpeed * (1.33f - JumpTime / MaxJumpTime);
                     myBody.velocity = vel;
                 }
             } else {
@@ -114,12 +127,13 @@ public class HeroRabbit : MonoBehaviour {
     
     public void die()
     {
+        isDead = false;
         animator.SetTrigger("death");
-        animator.SetTrigger("alive");
     }
 
     public void resetToIdle()
     {
+        animator.SetTrigger("alive");
         LevelController.current.onRabbitDeath(this);
     }
 }
