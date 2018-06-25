@@ -10,7 +10,7 @@ public class HeroRabbit : MonoBehaviour {
     bool isGrounded = false;
     bool JumpActive = false;
     float JumpTime = 0f;
-    public float MaxJumpTime = 2f;
+    public float MaxJumpTime = 3f;
     public float JumpSpeed = 2f;
     Transform heroParent = null;
 
@@ -25,7 +25,6 @@ public class HeroRabbit : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
-        this.heroParent = this.transform.parent;
         myBody = this.GetComponent<Rigidbody2D>();
         LevelController.current.setStartPosition(transform.position);
         animator = GetComponent<Animator>();
@@ -36,9 +35,7 @@ public class HeroRabbit : MonoBehaviour {
         if (obj.transform.parent != new_parent)
         {
             Vector3 pos = obj.transform.position;
-
             obj.transform.parent = new_parent;
-
             obj.transform.position = pos;
         }
     }
@@ -70,6 +67,7 @@ public class HeroRabbit : MonoBehaviour {
         else
         {
             animator.SetBool("run", false);
+            
         }
 
         if (this.isGrounded)
@@ -100,7 +98,7 @@ public class HeroRabbit : MonoBehaviour {
             SetNewParent(this.transform, this.heroParent);
         }
 
-        Debug.DrawLine(from, to, Color.red);
+        //Debug.DrawLine(from, to, Color.red);
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
